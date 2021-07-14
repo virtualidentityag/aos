@@ -4,7 +4,7 @@
  * like 'position'
  */
 export default () => {
-  var lightDOMElements = document.querySelectorAll("[data-aos]");
+  var lightDOMElements = Array.from(document.querySelectorAll("[data-aos]"));
   var allDOMElements = Array.from(document.querySelectorAll("[data-animated-children]")).reduce((accumulator, currentValue) => {
     return [...accumulator, Array.from(currentValue.shadowRoot.querySelectorAll('[data-aos]'))]
   }, lightDOMElements).flat();
