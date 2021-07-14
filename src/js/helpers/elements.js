@@ -4,6 +4,9 @@
  * like 'position'
  */
 export default () => {
-  const elements = document.querySelectorAll('[data-aos]');
-  return Array.prototype.map.call(elements, node => ({ node }));
+  var lightDOMElements = document.querySelectorAll("[data-aos]");
+  var allDOMElements = Array.from(document.querySelectorAll("[data-animated-children]")).reduce((accumulator, currentValue) => {
+    return [...accumulator, Array.from(currentValue.shadowRoot.querySelectorAll('[data-aos]'))]
+  }, lightDOMElements).flat();
+  return Array.prototype.map.call(allDOMElements, node => ({ node }));
 };
